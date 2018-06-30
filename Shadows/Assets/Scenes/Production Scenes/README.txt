@@ -1,0 +1,1 @@
+This folder only contains scenes that WILL be loaded into the game and are in the build directory
