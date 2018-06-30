@@ -11,6 +11,7 @@ public class SpawnShadows : MonoBehaviour
 
 //---------------------------------------------------------------------------FIELDS:
 
+	[System.Serializable]
 	public class ShadowsClass
 	{
 		public GameObject[] Shadows;
