@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	public PlayerController PC;
 	public int LigthNumber, MaxLights;
 	public Axes.Action Interact;
+	public GameObject CanvasObject;
 
 	private bool x;
 	private SpawnShadows[] SS;
@@ -54,11 +55,13 @@ public class GameManager : MonoBehaviour
 		{
 			if(!x)	
 			{
+				CanvasObject.SetActive(true);
 				Cursor.lockState = CursorLockMode.None;
 				x = true;
 			}
 			else
 			{
+				CanvasObject.SetActive(false);
 				Cursor.lockState = CursorLockMode.Locked;
 				x = false;
 			}
@@ -70,6 +73,15 @@ public class GameManager : MonoBehaviour
 			{
 				ss.SwitchState();
 			}
+		}
+
+		if(Input.GetKeyDown(KeyCode.N))
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+		}
+		else if(Input.GetKeyDown(KeyCode.M))
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		}
     }
 

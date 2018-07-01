@@ -12,6 +12,9 @@ public class SpawnShadows : MonoBehaviour
 //---------------------------------------------------------------------------FIELDS:
 
 	public GameManager GM;
+	public ShadowsClass[] SC;
+	public bool x,z;
+
 	[System.Serializable]
 	public class ShadowsClass
 	{
@@ -19,19 +22,24 @@ public class SpawnShadows : MonoBehaviour
 		public GameObject PlayerShadow, Light;
 	}
 	
-	public ShadowsClass[] SC;
 	
+	private GameObject player;
 	private int lightVal;
 //---------------------------------------------------------------------MONO METHODS:
 
 	void Start() 
 	{
-		
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
 		
 	void Update()
     {
 		lightVal = GM.LigthNumber;
+		if(SC[lightVal].PlayerShadow != null)
+		{
+			if(SC[lightVal].PlayerShadow.activeSelf)
+				blockMovement();
+		}
     }
 
 	void OnCollisionEnter(Collision col)
@@ -66,12 +74,28 @@ public class SpawnShadows : MonoBehaviour
 			foreach(GameObject shad in SC[lightVal].Shadows) //Turn on all shadows in this class
 			shad.SetActive(true);
 			if(SC[lightVal].PlayerShadow != null)
-			SC[lightVal].PlayerShadow.SetActive(true); //Turn on the player's shadow
+				SC[lightVal].PlayerShadow.SetActive(true); //Turn on the player's shadow
 
 		}
 	}
 
 //--------------------------------------------------------------------------HELPERS:
-
+	///<Summary>
+	///B;pcls the x,y or z direction of the shadow that spawns.
+	///<Summary>
+	private void blockMovement()
+	{
+		if(SC[lightVal].PlayerShadow != null)
+		{
+			if(x)
+			{
+				SC[lightVal].PlayerShadow.transform.position = new Vector3(0, player.transform.position.y, player.transform.position.z);
+			}
+			else if(z)
+			{
+				SC[lightVal].PlayerShadow.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 0);
+			}
+		}
+	}
 	
 }
