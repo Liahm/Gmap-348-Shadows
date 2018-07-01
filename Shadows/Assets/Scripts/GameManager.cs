@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 	public Axes.Action Interact;
 
 	private bool x;
+	private SpawnShadows[] SS;
+
 //---------------------------------------------------------------------MONO METHODS:
 
 	void Start() 
@@ -22,7 +24,7 @@ public class GameManager : MonoBehaviour
 		if (Instance == null)
         {
             Instance = this;	
-            DontDestroyOnLoad(this.gameObject); /* Set the GameManager to persist through scene loading */
+            //DontDestroyOnLoad(this.gameObject); /* Set the GameManager to persist through scene loading */
         }
 		else
         {
@@ -38,7 +40,8 @@ public class GameManager : MonoBehaviour
 			Cursor.lockState = CursorLockMode.Locked;
 		}
 		x = false;
-		
+
+		SS = GameObject.FindObjectsOfType<SpawnShadows>();
 	}
 		
 	void Update()
@@ -63,21 +66,25 @@ public class GameManager : MonoBehaviour
 		if(Input.GetButtonDown(Axes.toStr[Interact]))
 		{
 			SwitchLights();
+			foreach(SpawnShadows ss in SS)
+			{
+				ss.SwitchState();
+			}
 		}
     }
 
 //--------------------------------------------------------------------------METHODS:
 
-	public static GameManager GetInstance()
-	{ return Instance; }
 //--------------------------------------------------------------------------HELPERS:
 	private void SwitchLights()
 	{
-		if(LigthNumber == MaxLights)
+		if(LigthNumber == MaxLights - 1	)
 		{
 			LigthNumber = 0;
 		}
 		else
+		{
 			LigthNumber++;	
+		}
 	}
 }
