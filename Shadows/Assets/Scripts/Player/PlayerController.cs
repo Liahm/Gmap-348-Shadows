@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 		playerMove=Vector3.zero,
 		netForce=Vector3.zero,//velocity added for one frame only
 		constVelocity=Vector3.zero;//constant velocity added every frame, ex for accumulating gravity/jumping
+
 	
 //---------------------------------------------------------------------MONO METHODS:
 
@@ -37,8 +38,9 @@ public class PlayerController : MonoBehaviour
 			return;
 		}
 
-		MovePlayer();
 		Jump();
+		MovePlayer();
+		//Jump();
 	}
 
 //--------------------------------------------------------------------------METHODS:
@@ -72,7 +74,7 @@ public class PlayerController : MonoBehaviour
 	{
 		bool grounded = isGrounded();
 
-		if(Input.GetButtonDown(Axes.toStr[jump]) && grounded)
+		if(Input.GetButton(Axes.toStr[jump]) && grounded)
 		{
 			constVelocity.y = jumpspeed;
 		}
