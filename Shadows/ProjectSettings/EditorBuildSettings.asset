@@ -13,6 +13,12 @@ EditorBuildSettings:
     guid: fc35044c63ba88a4abeeca4ba0727267
   - enabled: 1
     path: Assets/Scenes/Production Scenes/Level 1.unity
+    guid: bb82566bf36fc2e4f853c6ca5e02c335
+  - enabled: 1
+    path: Assets/Scenes/Production Scenes/Level 2.unity
+    guid: 5a673d85f7631f8438423f0198871417
+  - enabled: 1
+    path: Assets/Scenes/Production Scenes/Level 3.unity
     guid: 475f9921f16cb724cb1c385357cf2fef
   - enabled: 1
     path: Assets/Scenes/Production Scenes/End.unity
